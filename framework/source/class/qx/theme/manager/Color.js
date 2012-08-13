@@ -75,7 +75,7 @@ qx.Class.define("qx.theme.manager.Color",
 
           if (typeof temp === "string")
           {
-            if (!util.isCssString(temp)) {
+            if (!util.isCssString(temp) && !source[temp]) {
               throw new Error("Could not parse color: " + temp);
             }
           }
@@ -107,10 +107,11 @@ qx.Class.define("qx.theme.manager.Color",
     {
       var cache = this._dynamic;
       var resolved = cache[value];
-
       if (resolved)
       {
-        return resolved;
+        
+        // check if resolved color is within the color map
+        return cache[resolved] ? cache[resolved] : resolved;
       }
 
       // If the font instance is not yet cached create a new one to return
