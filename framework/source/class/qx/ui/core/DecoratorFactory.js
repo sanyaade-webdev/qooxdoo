@@ -152,7 +152,24 @@ qx.Class.define("qx.ui.core.DecoratorFactory",
       "false" : function() {
         return this.base(arguments);
       }
-    })
+    }),
+    
+    
+    /**
+     * Disposes all pooled decorators.
+     */
+    invalidatePool : function()
+    {
+      for (var key in this.__pool){
+        for (var i=0; i<this.__pool[key].length; i++)
+        {
+          var item = this.__pool[key][i];
+          item.dispose();
+        }
+      }
+      
+      this.__pool = {};
+    }
   },
 
 

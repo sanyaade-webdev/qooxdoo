@@ -899,6 +899,11 @@ qx.Class.define("qx.ui.core.Widget",
 
     /** {Map} Contains all pooled decorators for reuse */
     __decoratorPool : new qx.ui.core.DecoratorFactory(),
+    
+    getDecoratorPool : function()
+    {
+      return this.__decoratorPool;
+    },
 
     /** {Map} Contains all pooled shadows for reuse */
     __shadowPool : new qx.ui.core.DecoratorFactory()
@@ -2972,7 +2977,6 @@ qx.Class.define("qx.ui.core.Widget",
 
       // Add to appearance queue
       qx.ui.core.queue.Appearance.add(this);
-
       // Update child controls
       var controls = this.__childControls;
       if (controls)
